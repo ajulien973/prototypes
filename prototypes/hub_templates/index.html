@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Templates - Prototypes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.50/dist/full.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#540bf1',
+            secondary: '#cc009c',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .btn {
+      text-transform: none;
+      border: none;
+      font-size: 15px;
+      min-height: 3.2rem;
+      height: 3.2rem;
+      padding: 0.5rem 1.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-8">
+  <div class="max-w-4xl w-full">
+    <h1 class="text-6xl font-bold text-center mb-4">Message Templates</h1>
+    <p class="text-3xl text-center text-gray-600 mb-12">Interactive HTML Prototypes</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- List View -->
+      <a href="list-view.html" class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body">
+          <div class="text-4xl mb-3">📋</div>
+          <h2 class="card-title text-3xl">List View</h2>
+          <p class="text-xl text-gray-600">Browse and search templates with selection</p>
+        </div>
+      </a>
+
+      <!-- Editor View -->
+      <a href="editor-view.html" class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body">
+          <div class="text-4xl mb-3">✏️</div>
+          <h2 class="card-title text-3xl">Editor View</h2>
+          <p class="text-xl text-gray-600">Create and edit templates with validation</p>
+        </div>
+      </a>
+
+      <!-- Empty State -->
+      <a href="empty-state.html" class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body">
+          <div class="text-4xl mb-3">📝</div>
+          <h2 class="card-title text-3xl">Empty State</h2>
+          <p class="text-xl text-gray-600">First-time user experience</p>
+        </div>
+      </a>
+
+      <!-- Loading State -->
+      <a href="loading-state.html" class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body">
+          <div class="text-4xl mb-3">⏳</div>
+          <h2 class="card-title text-3xl">Loading State</h2>
+          <p class="text-xl text-gray-600">Fetching templates from server</p>
+        </div>
+      </a>
+
+      <!-- Empty Search -->
+      <a href="empty-search.html" class="card bg-white shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body">
+          <div class="text-4xl mb-3">🔍</div>
+          <h2 class="card-title text-3xl">Empty Search</h2>
+          <p class="text-xl text-gray-600">No results found for search</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-xl text-gray-600">Built with Tailwind CSS + DaisyUI v5.0.50</p>
+      <p class="text-lg text-gray-500 mt-2">Following Hublead design system specifications</p>
+    </div>
+  </div>
+</body>
+</html>

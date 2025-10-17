@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Templates - List View</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.50/dist/full.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#540bf1',
+            secondary: '#cc009c',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Button overrides from base.css */
+    .btn {
+      text-transform: none;
+      border: none;
+      font-size: 15px;
+      min-height: 3.2rem;
+      height: 3.2rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: rgb(84, 11, 241);
+      color: white;
+      font-weight: 500;
+    }
+
+    .btn-ghost {
+      padding: 0.5rem 0.75rem;
+    }
+
+    /* Product-matching input styles */
+    .product-input {
+      border: 2px solid #540bf1;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 16px;
+      width: 100%;
+      outline: none;
+    }
+
+    .product-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .product-input:focus {
+      border-color: #540bf1;
+      box-shadow: 0 0 0 3px rgba(84, 11, 241, 0.1);
+    }
+
+    /* List item with selected state */
+    .template-card {
+      padding: 1.25rem;
+      background: white;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .template-card:hover {
+      border-color: #540bf1;
+      background: #faf9ff;
+    }
+
+    .template-card.selected {
+      border-color: #540bf1;
+      background: #faf9ff;
+      box-shadow: 0 0 0 3px rgba(84, 11, 241, 0.1);
+    }
+
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Modal Backdrop -->
+  <div class="fixed inset-0 bg-black/50 flex items-center justify-center p-8">
+    <!-- Modal Container -->
+    <div class="w-[76.8rem] bg-white rounded-lg shadow-xl max-h-[90vh] flex flex-col">
+      <!-- Header -->
+      <div class="p-8 border-b border-gray-200">
+        <div class="flex items-start justify-between mb-4">
+          <div class="flex-1">
+            <h2 class="text-5xl font-semibold mb-3">Message Templates</h2>
+            <p class="text-3xl text-base-content/80">Select a template to use or create a new one</p>
+          </div>
+          <button onclick="window.location.href='index.html'" class="btn btn-ghost btn-circle" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex gap-3 mt-6">
+          <div class="relative flex-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search templates..."
+              class="product-input pl-14"
+              style="height: 3.5rem; font-size: 18px;"
+              oninput="filterTemplates()"
+            />
+          </div>
+          <button class="btn btn-ghost btn-square h-14 w-14" aria-label="Refresh" onclick="location.reload()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Template List -->
+      <div class="flex-1 overflow-y-auto p-8">
+        <div id="templateList" class="space-y-3">
+          <!-- Templates will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="p-8 border-t border-gray-200 flex justify-end">
+        <button onclick="window.location.href='editor-view.html'" class="btn btn-primary inline-flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Create New Template
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Index Button -->
+  <a href="index.html" class="fixed bottom-4 left-4 btn btn-lg btn-circle btn-ghost bg-white shadow-lg" aria-label="Back to index">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+  </a>
+
+  <script>
+    const mockTemplates = [
+      {
+        id: 1,
+        title: "Introduction Message",
+        content: "Hi {{firstname}}, I noticed your background in software development and thought you might be interested in exploring how our platform helps engineering teams streamline their workflow. Would you be open to a quick chat?"
+      },
+      {
+        id: 2,
+        title: "Follow-up After Connection",
+        content: "Thanks for connecting, {{firstname}}! I'd love to learn more about your work at {{company}} and share how we've helped similar organizations achieve their goals. When would be a good time for a brief call?"
+      },
+      {
+        id: 3,
+        title: "Conference Follow-up",
+        content: "Great meeting you at the conference, {{firstname}}! I really enjoyed our conversation about AI in sales. As promised, here's that resource I mentioned. Let me know if you'd like to continue the discussion."
+      },
+      {
+        id: 4,
+        title: "Value Proposition",
+        content: "Hi {{firstname}}, I help sales leaders like yourself reduce prospecting time by 40% while improving response rates. Based on your profile, I think there could be a great fit. Would you be interested in seeing a quick demo?"
+      },
+      {
+        id: 5,
+        title: "Re-engagement Message",
+        content: "Hi {{firstname}}, I reached out a few weeks ago about helping {{company}} with your outbound strategy. I wanted to follow up with some recent case studies that might be relevant to your team. Would you be open to a conversation?"
+      }
+    ];
+
+    let allTemplates = [...mockTemplates];
+
+    let selectedTemplateId = null;
+
+    function renderTemplates(templates) {
+      const container = document.getElementById('templateList');
+
+      if (templates.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <p class="text-2xl text-gray-500">No templates found</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = templates.map(template => `
+        <div
+          class="template-card ${selectedTemplateId === template.id ? 'selected' : ''}"
+          data-template-id="${template.id}"
+          onclick="selectTemplate(${template.id})"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <h3 class="text-2xl font-semibold mb-2">${template.title}</h3>
+              <p class="text-lg text-gray-600 line-clamp-2">${template.content}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterTemplates() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = allTemplates.filter(template =>
+        template.title.toLowerCase().includes(searchTerm) ||
+        template.content.toLowerCase().includes(searchTerm)
+      );
+      renderTemplates(filtered);
+    }
+
+    function selectTemplate(id) {
+      selectedTemplateId = selectedTemplateId === id ? null : id;
+      const template = allTemplates.find(t => t.id === id);
+      console.log('Template selected:', template);
+
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = allTemplates.filter(template =>
+        template.title.toLowerCase().includes(searchTerm) ||
+        template.content.toLowerCase().includes(searchTerm)
+      );
+      renderTemplates(filtered);
+    }
+
+    renderTemplates(allTemplates);
+  </script>
+</body>
+</html>

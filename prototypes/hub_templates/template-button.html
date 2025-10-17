@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Button - LinkedIn Context</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5.0.50/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <style>.btn { text-transform: none; border: none; font-size: 15px; }</style>
+</head>
+<body class="bg-base-200 min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-3xl">
+    <div class="bg-white border border-gray-300 rounded-lg shadow-lg p-8">
+      <div class="mb-6">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-4">New message</h3>
+        <div class="flex items-center gap-2 mb-6">
+          <span class="text-lg text-gray-600">To:</span>
+          <div class="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-full">
+            <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-semibold">JD</div>
+            <span class="text-lg font-medium text-gray-800">John Doe</span>
+          </div>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-gray-700 mb-3">Subject</label>
+        <input type="text" placeholder="Type a subject" class="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div class="relative">
+        <label class="block text-lg font-medium text-gray-700 mb-3">Message</label>
+        <div class="mb-3 flex justify-end">
+          <button onclick="window.location.href='list-view.html'" class="btn btn-sm btn-ghost gap-2 text-base font-medium text-base-content/70 hover:text-base-content hover:bg-base-200 rounded-lg px-4 h-10">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            <span>or use a template</span>
+          </button>
+        </div>
+        <textarea placeholder="Write a message..." rows="10" class="w-full px-4 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+      </div>
+      <div class="flex items-center justify-between mt-6">
+        <div class="flex gap-3">
+          <button class="btn btn-ghost btn-circle btn-lg"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg></button>
+          <button class="btn btn-ghost btn-circle btn-lg"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></button>
+        </div>
+        <div class="flex gap-3">
+          <button class="btn btn-outline rounded-full px-8 text-base">Cancel</button>
+          <button class="btn rounded-full px-8 text-base text-white" style="background-color: #0a66c2;">Send</button>
+        </div>
+      </div>
+    </div>
+    <div class="card bg-base-100 shadow-lg mt-8">
+      <div class="card-body p-6">
+        <h3 class="text-xl font-semibold mb-3">About This Screen</h3>
+        <p class="text-lg text-base-content/80 leading-relaxed">This shows how the "or use a template" button integrates into the LinkedIn message composer. The button is styled subtly so it doesn't distract from LinkedIn's native UI.</p>
+        <div class="alert alert-info mt-4">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span class="text-base"><strong>Click the button</strong> to open the template modal and see the full flow!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="index.html" class="fixed bottom-4 left-4 btn btn-lg btn-circle btn-ghost bg-white shadow-lg z-50"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg></a>
+</body>
+</html>
